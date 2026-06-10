@@ -42,7 +42,6 @@
 - [Project Structure](#project-structure)
 - [Performance](#performance)
 - [Contributing](#contributing)
-- [Snapshots](#snapshots)
 
 ---
 
