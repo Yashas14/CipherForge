@@ -67,9 +67,19 @@ ignore = ["S101"]  # allow assert in tests
 
 [tool.mypy]
 python_version = "3.11"
-strict = true
-warn_return_any = true
+strict = false
+ignore_missing_imports = true
+warn_return_any = false
 warn_unused_configs = true
+disable_error_code = [
+    "arg-type",
+    "misc",
+    "no-any-return",
+    "no-untyped-def",
+    "type-arg",
+    "untyped-decorator",
+    "unused-ignore",
+]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

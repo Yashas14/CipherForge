@@ -52,8 +52,8 @@ async def encrypt_text(request: EncryptRequest) -> EncryptResponse:
                     status_code=400,
                     detail="recipient_public_key required for RSA-OAEP",
                 )
-            public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
-            ciphertext = RSAEncryptor.encrypt(plaintext, public_key)
+            rsa_public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
+            ciphertext = RSAEncryptor.encrypt(plaintext, rsa_public_key)
             metadata = {"key_size_bits": 4096, "padding": "OAEP-SHA256"}
 
         elif request.algorithm == "hybrid":
@@ -62,8 +62,8 @@ async def encrypt_text(request: EncryptRequest) -> EncryptResponse:
                     status_code=400,
                     detail="recipient_public_key required for hybrid encryption",
                 )
-            public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
-            ciphertext = HybridEncryptor.encrypt(plaintext, public_key, aad)
+            rsa_public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
+            ciphertext = HybridEncryptor.encrypt(plaintext, rsa_public_key, aad)
             metadata = {"rsa_key_bits": 4096, "aes_key_bits": 256}
 
         elif request.algorithm == "ecdh":
@@ -73,8 +73,8 @@ async def encrypt_text(request: EncryptRequest) -> EncryptResponse:
                     detail="recipient_public_key required for ECDH",
                 )
             pub_bytes = base64.b64decode(request.recipient_public_key)
-            public_key = ECDHEncryptor.import_public_key(pub_bytes)
-            ciphertext = ECDHEncryptor.encrypt(plaintext, public_key, aad)
+            x25519_public_key = ECDHEncryptor.import_public_key(pub_bytes)
+            ciphertext = ECDHEncryptor.encrypt(plaintext, x25519_public_key, aad)
             metadata = {"curve": "X25519", "aes_key_bits": 256}
 
         else:

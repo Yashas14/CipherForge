@@ -54,16 +54,16 @@ async def decrypt_text(request: DecryptRequest) -> DecryptResponse:
                 raise HTTPException(
                     status_code=400, detail="private_key required for RSA-OAEP decryption"
                 )
-            private_key = RSAEncryptor.import_private_key(request.private_key.encode())
-            plaintext = RSAEncryptor.decrypt(ciphertext, private_key)
+            rsa_private_key = RSAEncryptor.import_private_key(request.private_key.encode())
+            plaintext = RSAEncryptor.decrypt(ciphertext, rsa_private_key)
 
         elif request.algorithm == "hybrid":
             if not request.private_key:
                 raise HTTPException(
                     status_code=400, detail="private_key required for hybrid decryption"
                 )
-            private_key = RSAEncryptor.import_private_key(request.private_key.encode())
-            plaintext = HybridEncryptor.decrypt(ciphertext, private_key, aad)
+            rsa_private_key = RSAEncryptor.import_private_key(request.private_key.encode())
+            plaintext = HybridEncryptor.decrypt(ciphertext, rsa_private_key, aad)
 
         elif request.algorithm == "ecdh":
             if not request.private_key:
@@ -71,8 +71,8 @@ async def decrypt_text(request: DecryptRequest) -> DecryptResponse:
                     status_code=400, detail="private_key required for ECDH decryption"
                 )
             priv_bytes = base64.b64decode(request.private_key)
-            private_key = ECDHEncryptor.import_private_key(priv_bytes)
-            plaintext = ECDHEncryptor.decrypt(ciphertext, private_key, aad)
+            x25519_private_key = ECDHEncryptor.import_private_key(priv_bytes)
+            plaintext = ECDHEncryptor.decrypt(ciphertext, x25519_private_key, aad)
 
         else:
             raise HTTPException(status_code=400, detail=f"Unknown algorithm: {request.algorithm}")

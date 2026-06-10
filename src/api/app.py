@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import time
 from pathlib import Path
 
@@ -22,6 +23,20 @@ from src.fips import FIPSMode
 
 _start_time = time.time()
 
+
+def _get_allowed_origins() -> list[str]:
+    """Read allowed CORS origins from env or fall back to local dev origins."""
+    raw = os.environ.get("CORS_ALLOW_ORIGINS")
+    if raw:
+        origins = [origin.strip() for origin in raw.split(",") if origin.strip()]
+        if origins:
+            return origins
+    return [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+
+
 app = FastAPI(
     title="🔐 Next-Level Crypto API",
     description="Enterprise-grade encryption/decryption REST API with post-quantum support",
@@ -38,7 +53,7 @@ app = FastAPI(
 # CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure for production
+    allow_origins=_get_allowed_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

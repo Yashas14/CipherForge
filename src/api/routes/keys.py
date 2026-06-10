@@ -41,14 +41,17 @@ async def generate_key(request: KeyGenerateRequest) -> KeyResponse:
         public_key = None
 
     elif request.algorithm == "rsa-4096":
-        _private, public = RSAEncryptor.generate_keypair()
+        _rsa_private, rsa_public = RSAEncryptor.generate_keypair()
         key_id = "rsa-" + base64.b64encode(b"rsa-key")[:8].decode()
-        public_key = RSAEncryptor.export_public_key(public).decode()
+        public_key = RSAEncryptor.export_public_key(rsa_public).decode()
 
     elif request.algorithm == "x25519":
-        _private, public = ECDHEncryptor.generate_keypair()
-        key_id = "x25519-" + base64.b64encode(ECDHEncryptor.export_public_key(public)[:4]).decode()
-        public_key = base64.b64encode(ECDHEncryptor.export_public_key(public)).decode()
+        _x25519_private, x25519_public = ECDHEncryptor.generate_keypair()
+        key_id = (
+            "x25519-"
+            + base64.b64encode(ECDHEncryptor.export_public_key(x25519_public)[:4]).decode()
+        )
+        public_key = base64.b64encode(ECDHEncryptor.export_public_key(x25519_public)).decode()
 
     elif request.algorithm == "fernet":
         key = FernetEncryptor.generate_key()
