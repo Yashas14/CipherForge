@@ -42,7 +42,7 @@
 - [Project Structure](#project-structure)
 - [Performance](#performance)
 - [Contributing](#contributing)
-- [License](#license)
+- [Snapshots](#snapshots)
 
 ---
 
@@ -826,7 +826,32 @@ Measured with the dashboard Benchmark tab (includes HTTP round-trip latency):
 | Argon2id + AES | ~200 ms | ~200 ms | Memory-hard by design |
 
 ---
+## 📸 Snapshots
 
+
+<img width="1883" height="859" alt="image" src="https://github.com/user-attachments/assets/2feefec0-1dad-4f90-b2f5-0e8f9a40838c" />
+
+
+--
+<img width="1897" height="860" alt="image" src="https://github.com/user-attachments/assets/c617628f-82e6-4dd8-bb83-bfef5aa0165e" />
+
+
+--
+<img width="1891" height="854" alt="image" src="https://github.com/user-attachments/assets/e16e264c-d637-4ee3-bff6-9be2714e957e" />
+
+--
+<img width="1898" height="862" alt="image" src="https://github.com/user-attachments/assets/c6eeff20-99bc-46b0-bb69-794420eca939" />
+
+
+--
+<img width="1895" height="857" alt="image" src="https://github.com/user-attachments/assets/0e5ac98b-9995-4020-8795-537c2288ce12" />
+
+
+--
+<img width="1878" height="867" alt="image" src="https://github.com/user-attachments/assets/af5180b8-ea57-4dab-aae5-ca1500513e35" />
+
+
+---
 ## Contributing
 
 1. Fork the repository on GitHub
@@ -836,15 +861,10 @@ Measured with the dashboard Benchmark tab (includes HTTP round-trip latency):
 5. Submit a pull request with a clear description
 
 ---
+## 👤 Author
 
-## License
+**Yashas D**
 
-MIT License — see [LICENSE](LICENSE) for full text.
-
----
-
-<p align="center">
-  <strong>Built by <a href="https://github.com/Yashas14">Yashas</a></strong><br/>
-  <em>Demonstrating production-grade cryptographic engineering, full-stack development, and security-first architecture.</em>
-</p>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yashas%20D-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yashasd2004/)
+[![GitHub](https://img.shields.io/badge/GitHub-Yashas14-181717?logo=github&logoColor=white)](https://github.com/Yashas14)
 
