@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/TailwindCSS-4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
   <img src="https://img.shields.io/badge/FIPS_140--3-Enforced-gold?style=for-the-badge"/>
   <img src="https://img.shields.io/badge/Post--Quantum-Kyber--768-8B5CF6?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge"/>
+
 </p>
 
 <h1 align="center">🔐 CipherForge</h1>
