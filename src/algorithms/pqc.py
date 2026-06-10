@@ -138,8 +138,7 @@ class HybridPQC:
 
             # XOR shared secrets, then HKDF
             combined_secret = bytes(
-                a ^ b
-                for a, b in zip(classical_shared, pq_shared[:32], strict=False)
+                a ^ b for a, b in zip(classical_shared, pq_shared[:32], strict=False)
             )
             derived_key = HKDF(
                 algorithm=hashes.SHA256(),
@@ -177,10 +176,7 @@ class HybridPQC:
             ciphertext = aesgcm.encrypt(nonce, plaintext, aad)
 
             return (
-                bytes([HybridPQC.VERSION_CLASSICAL_ONLY])
-                + classical_pub_bytes
-                + nonce
-                + ciphertext
+                bytes([HybridPQC.VERSION_CLASSICAL_ONLY]) + classical_pub_bytes + nonce + ciphertext
             )
 
     @staticmethod
@@ -243,8 +239,7 @@ class HybridPQC:
 
             # Combine secrets
             combined_secret = bytes(
-                a ^ b
-                for a, b in zip(classical_shared, pq_shared[:32], strict=False)
+                a ^ b for a, b in zip(classical_shared, pq_shared[:32], strict=False)
             )
             derived_key = HKDF(
                 algorithm=hashes.SHA256(),

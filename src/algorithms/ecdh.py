@@ -124,7 +124,9 @@ class ECDHEncryptor:
 
     @staticmethod
     def encrypt(
-        plaintext: bytes, recipient_public_key: X25519PublicKey, aad: bytes | None = None,
+        plaintext: bytes,
+        recipient_public_key: X25519PublicKey,
+        aad: bytes | None = None,
     ) -> bytes:
         """Encrypt using ephemeral ECDH + AES-256-GCM.
 
@@ -208,6 +210,4 @@ class ECDHEncryptor:
         try:
             return aesgcm.decrypt(nonce, ciphertext, aad)
         except Exception as e:
-            raise AuthTagError(
-                "ECDH+AES-GCM decryption failed — wrong key or tampered data"
-            ) from e
+            raise AuthTagError("ECDH+AES-GCM decryption failed — wrong key or tampered data") from e

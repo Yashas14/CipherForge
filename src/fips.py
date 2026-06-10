@@ -34,58 +34,62 @@ class FIPSMode:
     """
 
     # FIPS-approved algorithms
-    ALLOWED_ALGORITHMS: frozenset[str] = frozenset({
-        "aes-128-gcm",
-        "aes-256-gcm",
-        "aes-128-cbc",
-        "aes-256-cbc",
-        "chacha20-poly1305",
-        "rsa-2048-oaep",
-        "rsa-3072-oaep",
-        "rsa-4096-oaep",
-        "rsa-2048-pss",
-        "rsa-3072-pss",
-        "rsa-4096-pss",
-        "x25519-ecdh",
-        "ecdh-p256",
-        "ecdh-p384",
-        "ecdh-p521",
-        "ed25519",
-        "sha-256",
-        "sha-384",
-        "sha-512",
-        "sha3-256",
-        "sha3-384",
-        "sha3-512",
-        "hmac-sha256",
-        "hmac-sha384",
-        "hmac-sha512",
-        "hkdf-sha256",
-        "hkdf-sha384",
-        "argon2id",
-        "hybrid-rsa-aes",
-        "hybrid-ecdh-aes",
-    })
+    ALLOWED_ALGORITHMS: frozenset[str] = frozenset(
+        {
+            "aes-128-gcm",
+            "aes-256-gcm",
+            "aes-128-cbc",
+            "aes-256-cbc",
+            "chacha20-poly1305",
+            "rsa-2048-oaep",
+            "rsa-3072-oaep",
+            "rsa-4096-oaep",
+            "rsa-2048-pss",
+            "rsa-3072-pss",
+            "rsa-4096-pss",
+            "x25519-ecdh",
+            "ecdh-p256",
+            "ecdh-p384",
+            "ecdh-p521",
+            "ed25519",
+            "sha-256",
+            "sha-384",
+            "sha-512",
+            "sha3-256",
+            "sha3-384",
+            "sha3-512",
+            "hmac-sha256",
+            "hmac-sha384",
+            "hmac-sha512",
+            "hkdf-sha256",
+            "hkdf-sha384",
+            "argon2id",
+            "hybrid-rsa-aes",
+            "hybrid-ecdh-aes",
+        }
+    )
 
     # Explicitly disallowed algorithms
-    DISALLOWED_ALGORITHMS: frozenset[str] = frozenset({
-        "md5",
-        "sha1",
-        "sha-1",
-        "des",
-        "3des",
-        "triple-des",
-        "rc4",
-        "ecb",
-        "aes-ecb",
-        "rsa-1024",
-        "rsa-512",
-        "pkcs1v15",
-        "rsa-pkcs1",
-        "blowfish",
-        "idea",
-        "cast5",
-    })
+    DISALLOWED_ALGORITHMS: frozenset[str] = frozenset(
+        {
+            "md5",
+            "sha1",
+            "sha-1",
+            "des",
+            "3des",
+            "triple-des",
+            "rc4",
+            "ecb",
+            "aes-ecb",
+            "rsa-1024",
+            "rsa-512",
+            "pkcs1v15",
+            "rsa-pkcs1",
+            "blowfish",
+            "idea",
+            "cast5",
+        }
+    )
 
     # Minimum key sizes in bits
     MIN_KEY_SIZES: ClassVar[dict[str, int]] = {
@@ -197,4 +201,3 @@ class FIPSMode:
             "standard": "FIPS 140-3",
             "reference": "NIST SP 800-175B Rev. 1",
         }
-

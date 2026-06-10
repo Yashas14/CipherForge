@@ -170,4 +170,3 @@ class SecureBuffer:
     def __str__(self) -> str:
         """Never reveal content in string conversion."""
         return f"[SecureBuffer: {self._size} bytes]"
-

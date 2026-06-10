@@ -86,13 +86,15 @@ async def sign_message(request: SignRequest) -> SignResponse:
     if request.algorithm == "rsa-pss":
         if not request.private_key:
             raise HTTPException(
-                status_code=400, detail="private_key required for RSA-PSS signing",
+                status_code=400,
+                detail="private_key required for RSA-PSS signing",
             )
         private_key = RSAEncryptor.import_private_key(request.private_key.encode())
         signature = RSAEncryptor.sign(message, private_key)
     else:
         raise HTTPException(
-            status_code=400, detail=f"Unsupported sign algorithm: {request.algorithm}",
+            status_code=400,
+            detail=f"Unsupported sign algorithm: {request.algorithm}",
         )
 
     await audit_logger.audit(
@@ -122,7 +124,8 @@ async def verify_signature(request: VerifyRequest) -> VerifyResponse:
     if request.algorithm == "rsa-pss":
         if not request.public_key:
             raise HTTPException(
-                status_code=400, detail="public_key required for verification",
+                status_code=400,
+                detail="public_key required for verification",
             )
         public_key = RSAEncryptor.import_public_key(request.public_key.encode())
         try:

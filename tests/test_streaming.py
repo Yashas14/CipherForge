@@ -40,9 +40,7 @@ class TestStreaming:
         )
 
         # Decrypt
-        decrypted = await _collect_stream(
-            decrypt_stream(_bytes_to_stream(encrypted, 4096), key)
-        )
+        decrypted = await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted, 4096), key))
 
         assert decrypted == plaintext
 
@@ -56,9 +54,7 @@ class TestStreaming:
             encrypt_stream(_bytes_to_stream(plaintext), key, "chacha20")
         )
 
-        decrypted = await _collect_stream(
-            decrypt_stream(_bytes_to_stream(encrypted), key)
-        )
+        decrypted = await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted), key))
 
         assert decrypted == plaintext
 
@@ -72,9 +68,7 @@ class TestStreaming:
             encrypt_stream(_bytes_to_stream(plaintext), key, "aes-gcm")
         )
 
-        decrypted = await _collect_stream(
-            decrypt_stream(_bytes_to_stream(encrypted), key)
-        )
+        decrypted = await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted), key))
 
         assert decrypted == plaintext
 
@@ -88,9 +82,7 @@ class TestStreaming:
             encrypt_stream(_bytes_to_stream(plaintext), key, "aes-gcm")
         )
 
-        decrypted = await _collect_stream(
-            decrypt_stream(_bytes_to_stream(encrypted), key)
-        )
+        decrypted = await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted), key))
 
         assert decrypted == plaintext
 
@@ -101,18 +93,14 @@ class TestStreaming:
         plaintext = os.urandom(100 * 1024)
 
         encrypted = bytearray(
-            await _collect_stream(
-                encrypt_stream(_bytes_to_stream(plaintext), key, "aes-gcm")
-            )
+            await _collect_stream(encrypt_stream(_bytes_to_stream(plaintext), key, "aes-gcm"))
         )
 
         # Tamper with data after the header (byte 50)
         encrypted[50] ^= 0xFF
 
         with pytest.raises(StreamingError):
-            await _collect_stream(
-                decrypt_stream(_bytes_to_stream(bytes(encrypted)), key)
-            )
+            await _collect_stream(decrypt_stream(_bytes_to_stream(bytes(encrypted)), key))
 
     @pytest.mark.asyncio
     async def test_wrong_key(self) -> None:
@@ -126,9 +114,7 @@ class TestStreaming:
         )
 
         with pytest.raises(StreamingError):
-            await _collect_stream(
-                decrypt_stream(_bytes_to_stream(encrypted), key2)
-            )
+            await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted), key2))
 
     @pytest.mark.asyncio
     async def test_large_file(self) -> None:
@@ -140,8 +126,6 @@ class TestStreaming:
             encrypt_stream(_bytes_to_stream(plaintext, 32768), key, "aes-gcm", chunk_size=65536)
         )
 
-        decrypted = await _collect_stream(
-            decrypt_stream(_bytes_to_stream(encrypted, 16384), key)
-        )
+        decrypted = await _collect_stream(decrypt_stream(_bytes_to_stream(encrypted, 16384), key))
 
         assert decrypted == plaintext

@@ -150,9 +150,7 @@ class VaultTransitEncryptor:
             List of Vault ciphertext strings.
         """
         try:
-            batch_input = [
-                {"plaintext": base64.b64encode(item).decode()} for item in items
-            ]
+            batch_input = [{"plaintext": base64.b64encode(item).decode()} for item in items]
             response = self._client.secrets.transit.encrypt_data(
                 name=key_name,
                 batch_input=batch_input,
@@ -180,8 +178,7 @@ class VaultTransitEncryptor:
                 mount_point=self._mount,
             )
             return [
-                base64.b64decode(item["plaintext"])
-                for item in response["data"]["batch_results"]
+                base64.b64decode(item["plaintext"]) for item in response["data"]["batch_results"]
             ]
         except Exception as e:
             raise KMSError(f"Vault batch decrypt failed: {e}", provider="vault") from e
@@ -243,7 +240,4 @@ class VaultTransitEncryptor:
                 mount_point=self._mount,
             )
         except Exception as e:
-            raise KMSError(
-                f"Vault set min_decryption_version failed: {e}", provider="vault"
-            ) from e
-
+            raise KMSError(f"Vault set min_decryption_version failed: {e}", provider="vault") from e

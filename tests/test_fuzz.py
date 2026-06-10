@@ -81,9 +81,13 @@ class TestArgon2Fuzz:
 class TestKeyHierarchyFuzz:
     """Property-based tests for key derivation."""
 
-    @given(purpose=st.text(
-        min_size=1, max_size=50, alphabet=st.characters(whitelist_categories=("L", "N")),
-    ))
+    @given(
+        purpose=st.text(
+            min_size=1,
+            max_size=50,
+            alphabet=st.characters(whitelist_categories=("L", "N")),
+        )
+    )
     @settings(max_examples=100)
     def test_derive_deterministic(self, purpose: str) -> None:
         """Same master key + purpose should always derive the same subkey."""
@@ -94,10 +98,14 @@ class TestKeyHierarchyFuzz:
 
     @given(
         purpose1=st.text(
-            min_size=1, max_size=20, alphabet=st.characters(whitelist_categories=("L",)),
+            min_size=1,
+            max_size=20,
+            alphabet=st.characters(whitelist_categories=("L",)),
         ),
         purpose2=st.text(
-            min_size=1, max_size=20, alphabet=st.characters(whitelist_categories=("L",)),
+            min_size=1,
+            max_size=20,
+            alphabet=st.characters(whitelist_categories=("L",)),
         ),
     )
     @settings(max_examples=100)

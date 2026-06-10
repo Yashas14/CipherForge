@@ -139,6 +139,4 @@ class HybridEncryptor:
         try:
             return aesgcm.decrypt(nonce, aes_ciphertext, aad)
         except Exception as e:
-            raise AuthTagError(
-                "Hybrid decryption failed — AES-GCM auth tag invalid"
-            ) from e
+            raise AuthTagError("Hybrid decryption failed — AES-GCM auth tag invalid") from e

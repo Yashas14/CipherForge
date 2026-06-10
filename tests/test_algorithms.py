@@ -281,6 +281,7 @@ class TestFernet:
 
     def test_ttl_expired(self) -> None:
         import time as _time
+
         enc = FernetEncryptor()
         token = enc.encrypt(b"data")
         _time.sleep(2)

@@ -107,4 +107,3 @@ class AESEncryptor:
             raise AuthTagError(
                 "AES-GCM decryption failed — data may be tampered or key is incorrect"
             ) from e
-

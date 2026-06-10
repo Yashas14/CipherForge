@@ -137,6 +137,7 @@ class LocalKeyStore:
 
         if expires_in_days:
             from datetime import timedelta
+
             entry["expires_at"] = (now + timedelta(days=expires_in_days)).isoformat()
 
         self._store["keys"][key_id] = entry

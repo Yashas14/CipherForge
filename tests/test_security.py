@@ -196,6 +196,7 @@ class TestExceptionHierarchy:
 
     def test_auth_tag_error(self) -> None:
         from src.exceptions import AuthTagError
+
         err = AuthTagError()
         assert "tag" in str(err).lower()
         assert err.operation == "verify_tag"
@@ -208,12 +209,14 @@ class TestExceptionHierarchy:
 
     def test_kms_error(self) -> None:
         from src.exceptions import KMSError
+
         err = KMSError("connection failed", provider="aws")
         assert err.provider == "aws"
         assert err.operation == "kms"
 
     def test_streaming_error(self) -> None:
         from src.exceptions import StreamingError
+
         err = StreamingError("chunk corrupted", chunk_index=5)
         assert err.chunk_index == 5
         assert err.operation == "streaming"

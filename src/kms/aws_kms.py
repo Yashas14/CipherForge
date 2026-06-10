@@ -157,9 +157,7 @@ class AWSKMSEncryptor:
             try:
                 return aesgcm.decrypt(nonce, ciphertext, None)
             except Exception as e:
-                raise AuthTagError(
-                    "KMS envelope decryption: AES-GCM auth tag failed"
-                ) from e
+                raise AuthTagError("KMS envelope decryption: AES-GCM auth tag failed") from e
         finally:
             plaintext_dek = b"\x00" * len(plaintext_dek)
 
@@ -198,4 +196,3 @@ class AWSKMSEncryptor:
 
         new_dek_len = struct.pack("!H", len(new_encrypted_dek))
         return new_dek_len + new_encrypted_dek + rest
-

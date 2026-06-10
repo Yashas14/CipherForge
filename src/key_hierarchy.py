@@ -201,4 +201,3 @@ class KeyHierarchy:
             ) from e
 
         return cls(master_key)
-

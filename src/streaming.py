@@ -170,7 +170,8 @@ async def decrypt_stream(
             raw_buffer += chunk
         except StopAsyncIteration as exc:
             raise StreamingError(
-                "Stream ended before header was complete", chunk_index=0,
+                "Stream ended before header was complete",
+                chunk_index=0,
             ) from exc
 
     # Parse header
@@ -205,7 +206,8 @@ async def decrypt_stream(
             except StopAsyncIteration:
                 if raw_buffer:
                     raise StreamingError(  # noqa: B904
-                        "Stream ended mid-chunk", chunk_index=chunk_index,
+                        "Stream ended mid-chunk",
+                        chunk_index=chunk_index,
                     )
                 return
 

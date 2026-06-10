@@ -194,9 +194,9 @@ async def list_algorithms() -> list[dict]:
 _dist_dir = Path(__file__).resolve().parent.parent.parent / "frontend" / "dist"
 
 if _dist_dir.exists():
+
     @app.get("/", include_in_schema=False)
     async def serve_frontend():
         return FileResponse(_dist_dir / "index.html")
 
     app.mount("/", StaticFiles(directory=str(_dist_dir), html=True), name="frontend-static")
-

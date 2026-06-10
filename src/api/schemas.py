@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 # === Request Models ===
 
+
 class EncryptRequest(BaseModel):
     """Request body for text encryption."""
 
@@ -79,6 +80,7 @@ class KeyImportRequest(BaseModel):
 
 
 # === Response Models ===
+
 
 class EncryptResponse(BaseModel):
     """Response for encryption operations."""

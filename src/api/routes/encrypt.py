@@ -52,9 +52,7 @@ async def encrypt_text(request: EncryptRequest) -> EncryptResponse:
                     status_code=400,
                     detail="recipient_public_key required for RSA-OAEP",
                 )
-            public_key = RSAEncryptor.import_public_key(
-                request.recipient_public_key.encode()
-            )
+            public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
             ciphertext = RSAEncryptor.encrypt(plaintext, public_key)
             metadata = {"key_size_bits": 4096, "padding": "OAEP-SHA256"}
 
@@ -64,9 +62,7 @@ async def encrypt_text(request: EncryptRequest) -> EncryptResponse:
                     status_code=400,
                     detail="recipient_public_key required for hybrid encryption",
                 )
-            public_key = RSAEncryptor.import_public_key(
-                request.recipient_public_key.encode()
-            )
+            public_key = RSAEncryptor.import_public_key(request.recipient_public_key.encode())
             ciphertext = HybridEncryptor.encrypt(plaintext, public_key, aad)
             metadata = {"rsa_key_bits": 4096, "aes_key_bits": 256}
 
